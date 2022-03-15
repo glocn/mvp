@@ -1,0 +1,9 @@
+## API KEYS ##
+# config/config.js
+# config/myConfig.js
+
+## DEV ##
+node_modules
+config
+
+# .DS_Store
