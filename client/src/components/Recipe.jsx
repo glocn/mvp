@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {useState} from 'react';
+import styled, { css } from 'styled-components';
+import axios from 'axios';
 
 //styled components
 const Styledheading = styled.h1`
@@ -13,7 +14,7 @@ const Styledlist = styled.ul`
   /* width: 35rem; */
   text-align: left;
   justify-content: space-evenly;
-  /* list-style: none; */
+  /* list-style: hidden; */
 `
 const Styledtext = styled.li`
     display: inline-block;
@@ -27,6 +28,51 @@ const Styledcontainer = styled.div`
   flex: 1 0 21%;
   height: 100%;
   margin-left: 1.7%;
+`
+const Styledcardcontainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  transition: z-indez 500ms, transform 500ms;
+  z-index: 0;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+
+  &.flipped {
+    z-index: 1;
+  }
+`
+const Styledcardside = css`
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 2px solid #0d0d0d;
+`
+const Styledflipfront = styled.div`
+  ${Styledcardside}
+  z-index: 0;
+  background: white;
+  `
+  const Styledflipback = styled.div`
+    ${Styledcardside}
+    transform: rotateY(-180deg) translate(100%, 0);
+    background: #d7d7d7;
+    z-index: 1;
+  `
+const Styledflipinner = styled.div`
+  flex: 1;
+  display: flex;
+  transition: transform 500ms;
+  transform-style: preserve-3d;
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
 `
 const Styledimg = styled.img`
   width: 100%;
@@ -50,14 +96,61 @@ const Styledref = styled.a`
     color: #7391C8;
   }
 `
+const Styledbacktitle = styled.h1`
+  text-align: center;
+  font-size: 25px;
+  color: #064CA8;
+`
+const Styledspan = styled.span`
+  text-align: center;
+  font-size: 20px;
+  color: #064CA8;
+`
 
 const Recipe = ( { item }) => {
+  const [flipped, setFlipped] = useState(false);
+  const [boba, setBoba] = useState("Lychee Green Tea with Lychee Jelly");
+
+  const getPairing = () => {
+    axios.get('/boba')
+    .then((res) => {
+      const data = res.data;
+      console.log('front', data);
+
+      setBoba(data);
+    })
+    .catch((err) => {
+      console.log('error with getting boba description', err)
+    });
+  }
+
+  const beforeFlip = () => {
+    setFlipped(true);
+    getPairing();
+  }
+
+  let random = Math.floor(Math.random() * 20);
+  let bobaDescription = boba[random].about;
 
   return (
     <Styledcontainer>
       <Styledarticle>
         <Styledheading>{item.title}</Styledheading>
-        <Styledimg src={item.image} alt="recipe" />
+
+        <Styledcardcontainer >
+          <Styledflipinner className={flipped ? 'flipped' : ''}>
+            <Styledflipfront >
+              <Styledimg src={item.image} alt="recipe" />
+              <button onClick={beforeFlip}> Flip </button>
+            </Styledflipfront>
+            <Styledflipback className="flip-card-back">
+              <Styledbacktitle> Boba Pairing </Styledbacktitle>
+              <Styledspan> {bobaDescription} </Styledspan>
+              <button onClick={() => setFlipped(false)}> Flip </button>
+            </Styledflipback>
+          </Styledflipinner>
+        </Styledcardcontainer>
+
         <Styledlist>
           <Styledtext>{item.nutrition.nutrients[0].amount.toFixed(0)} Calories</Styledtext>
           <Styledtext> Ready in {item.readyInMinutes} minutes </Styledtext>

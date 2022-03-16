@@ -1,4 +1,16 @@
-// const axios = require('axios');
-// const configData = require('../../config/config.js');
-// const apiKey = configData.apiKey;
+const db = require('../db');
 
+module.exports = {
+  getBoba(callback) {
+    let queryStr = 'SELECT * FROM pairing';
+
+    db.query(queryStr, (err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        console.log('model', results);
+        callback(null, results);
+      }
+    })
+  }
+}

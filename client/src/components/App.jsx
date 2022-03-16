@@ -59,22 +59,22 @@ const App = () => {
     setSearch(event.target.value);
   }
 
-  const getRecipes = () => {
-    setRecipes(data);
-    setCalories(null);
-    setSearch('');
-  }
   // const getRecipes = () => {
-  //   axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&intolerances=dairy&maxCalories=${calories}&number=100&addRecipeInformation=true&apiKey=${apiKey}`)
-  //   .then((res) => {
-  //     const data = res.data;
-  //     console.log('data', data);
-  //     setRecipes(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log('error getting recipes', err);
-  //   })
+  //   setRecipes(data);
+  //   setCalories(null);
+  //   setSearch('');
   // }
+  const getRecipes = () => {
+    axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&intolerances=dairy&maxCalories=${calories}&number=100&addRecipeInformation=true&apiKey=${apiKey}`)
+    .then((res) => {
+      const data = res.data;
+      console.log('data', data);
+      setRecipes(data);
+    })
+    .catch((err) => {
+      console.log('error getting recipes', err);
+    })
+  }
 
   return (
     <StyledApp className="App">
