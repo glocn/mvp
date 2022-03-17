@@ -2,7 +2,7 @@ import React from 'react';
 import Recipe from './Recipe.jsx';
 import styled from 'styled-components';
 
-//styled components
+//Styled Components
 const Styledmain = styled.div`
   display: flex;
   flex-wrap: wrap;

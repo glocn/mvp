@@ -2,7 +2,6 @@ const Model = require('../model');
 
 module.exports = {
   getBoba(req, res) {
-
     Model.getBoba((err, results) => {
       if (err) {
         res.status(404).send();
@@ -11,6 +10,7 @@ module.exports = {
       }
     })
   },
+
   postFavorites(req, res) {
    let params = req.body;
     Model.postFavorites(params, (err, results) => {
@@ -21,6 +21,7 @@ module.exports = {
       }
     })
   },
+  
   getFavorites(req, res) {
      Model.getFavorites((err, results) => {
        if (err) {

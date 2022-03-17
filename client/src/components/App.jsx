@@ -7,7 +7,7 @@ import { FaRegSmile } from "react-icons/fa";
 import styled from 'styled-components';
 const apiKey = configData.apiKey;
 
-//styled components
+//Styled components
 const StyledApp = styled.div`
   display: flex;
   align-items: center;
@@ -16,9 +16,7 @@ const StyledApp = styled.div`
 `
 const Styledtitle = styled.h1`
   text-align: center;
-  /* font-size: 60px; */
   padding: 15px 0px 5px 0px;
-  /* color: #064CA8; */
   font-size: 72px;
   background: -webkit-linear-gradient(#eee, #064CA8);
   -webkit-background-clip: text;
@@ -54,6 +52,19 @@ const Styledicon = styled(FaRegSmile)`
     color: #ffcc00;
     cursor: pointer;
   }
+  `
+ const Styledimg = styled.img`
+    width: 8%;
+    height: 0.2%
+    margin-bottom: 5px;
+    margin-right: 3%;
+    margin-left: -13%;
+  `
+const Styledtop = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 23px;
 `
 
 const App = () => {
@@ -111,10 +122,14 @@ const App = () => {
 
   return (
     <StyledApp className="App">
-      <Styledtitle className="title"> Moo-Free Meals </Styledtitle>
-      <Styledsection className="calories">
+      <Styledtop>
+        <Styledimg src={'https://media3.giphy.com/avatars/almondcow/NMkhJlHhvDVr.gif'} alt='' />
+        <Styledtitle className="title"> Moo-Free Meals </Styledtitle>
+      </Styledtop>
+      <Styledsection >
         <Styledinput
           type='number'
+          name=''
           placeholder='Select Target Calories'
           onChange={handleCalories}
         >
@@ -137,5 +152,4 @@ export default App;
 
 //API CALLS
 //`https://api.spoonacular.com/recipes/654911/information?includeNutrition=false&apiKey=${apiKey}`
-
 //`https://api.spoonacular.com/recipes/complexSearch?query=pasta&intolerances=dairy&maxCalories=${calories}&number=50&apiKey=${apiKey}`

@@ -12,6 +12,7 @@ module.exports = {
       }
     })
   },
+
   postFavorites(params, callback) {
     let queryStr = 'INSERT INTO favorites (title, link, photo) values (?, ?, ?)';
     let queryArgs = [params.title, params.link, params.photo];
@@ -24,6 +25,7 @@ module.exports = {
       }
     })
   },
+
   getFavorites(callback) {
     let queryStr = 'SELECT * FROM favorites';
 

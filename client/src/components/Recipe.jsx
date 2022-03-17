@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import axios from 'axios';
 import { FaFireAlt } from "react-icons/fa";
 
-//styled components
+//Styled Components
 const Styledheading = styled.h1`
   text-align: center;
   margin-bottom: 5px;
