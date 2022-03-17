@@ -11,6 +11,14 @@ app.get('/boba', (req, res) => {
   Controller.getBoba(req, res);
 })
 
+app.post('/favorites', (req, res) => {
+  Controller.postFavorites(req, res);
+})
+
+app.get('/favorites', (req, res) => {
+  Controller.getFavorites(req, res);
+})
+
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 });

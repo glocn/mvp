@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
+import { FaFireAlt } from "react-icons/fa";
 
 //styled components
 const Styledheading = styled.h1`
@@ -9,12 +10,8 @@ const Styledheading = styled.h1`
   font-size: 20px;
 `
 const Styledlist = styled.ul`
-  /* display: flex; */
-  /* align-items: center; */
-  /* width: 35rem; */
   text-align: left;
   justify-content: space-evenly;
-  /* list-style: hidden; */
 `
 const Styledtext = styled.li`
     display: inline-block;
@@ -106,6 +103,14 @@ const Styledspan = styled.span`
   font-size: 20px;
   color: #064CA8;
 `
+const Styledicon = styled(FaFireAlt)`
+  color: #FF4500;
+  transform: scale(1.5);
+  &:hover{
+    transform: scale(2);
+    cursor: pointer;
+  }
+`
 
 const Recipe = ( { item }) => {
   const [flipped, setFlipped] = useState(false);
@@ -115,8 +120,6 @@ const Recipe = ( { item }) => {
     axios.get('/boba')
     .then((res) => {
       const data = res.data;
-      console.log('front', data);
-
       setBoba(data);
     })
     .catch((err) => {
@@ -127,6 +130,24 @@ const Recipe = ( { item }) => {
   const beforeFlip = () => {
     setFlipped(true);
     getPairing();
+  }
+
+  //handle favorites
+  const handleFavorites = (event) => {
+    event.preventDefault();
+      let params = {
+        title: item.title,
+        link: item.sourceUrl,
+        photo: item.image
+      }
+
+      axios.post('/favorites', params)
+      .then(() => {
+        alert('Recipe Saved to Favorites!');
+      })
+      .catch((err) => {
+        console.log('Error Saving Favorites', err)
+      });
   }
 
   let random = Math.floor(Math.random() * 20);
@@ -143,7 +164,7 @@ const Recipe = ( { item }) => {
               <Styledimg src={item.image} alt="recipe" />
               <button onClick={beforeFlip}> Flip </button>
             </Styledflipfront>
-            <Styledflipback className="flip-card-back">
+            <Styledflipback >
               <Styledbacktitle> Boba Pairing </Styledbacktitle>
               <Styledspan> {bobaDescription} </Styledspan>
               <button onClick={() => setFlipped(false)}> Flip </button>
@@ -159,6 +180,7 @@ const Recipe = ( { item }) => {
         </Styledlist>
 
         <Styledref href={item.sourceUrl}> Checkout Recipe </Styledref>
+        <Styledicon onClick={handleFavorites}/>
       </Styledarticle>
     </Styledcontainer>
   )

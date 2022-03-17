@@ -24,8 +24,50 @@ INSERT INTO pairing (about) values ('Pineapple Green Tea with Boba');
 INSERT INTO pairing (about) values ('Taro Milk Tea with Oatmilk and Almond Jelly');
 INSERT INTO pairing (about) values ('Passionfuit Black Tea with Boba');
 INSERT INTO pairing (about) values ('Watermelon Green Tea with Rainbow Jelly');
-INSERT INTO pairing (about) values ('Almond Milk Tea with Almond milk and Coconut Jelly');
+INSERT INTO pairing (about) values ('Almond Milk Tea with Almond Milk and Coconut Jelly');
 INSERT INTO pairing (about) values ('Coffee Milk Tea with Almond Milk and Pudding');
 INSERT INTO pairing (about) values ('Jasmine Green Milk Tea with Oatmilk and Boba');
 INSERT INTO pairing (about) values ('Regular Black Milk Tea with Oatmilk and Small Tapioca');
 INSERT INTO pairing (about) values ('Grapefuit Green Tea with Lychee Jelly');
+
+
+DROP TABLE IF EXISTS favorites;
+CREATE TABLE favorites (
+  id int NOT NULL AUTO_INCREMENT,
+  title text NOT NULL,
+  link VARCHAR(400) NOT NULL,
+  photo VARCHAR(400) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO favorites (title, link, photo) values ('Pasta and Seafood', "http://www.foodista.com/recipe/8YWWDKPS/pasta-and-seafood", "https://spoonacular.com/recipeImages/654812-312x231.jpg");
+
+
+-- Save favorites from users
+
+--   title VARCHAR,
+--   link VARCHAR,
+--   photo VARCHAR,
+
+-- INSERT INTO pairing (about) values ('Honey Green Tea with Aloe', 'pasta', 'link', 'photo');
+-- INSERT INTO pairing (about) values ('Jasmine Green Tea with Rainbow Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Black Tea with Lychee Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Peach Green Tea with Lychee Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Wintermelon Tea with Small Tapioca', null, null, null);
+-- INSERT INTO pairing (about) values ('Mango slush with Mango Sago', null, null, null);
+-- INSERT INTO pairing (about) values ('Lychee Black Tea with Boba', null, null, null);
+-- INSERT INTO pairing (about) values ('Mango Green Tea with Lychee Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Strawberry Green Tea with Boba', null, null, null);
+-- INSERT INTO pairing (about) values ('Pineapple Black Tea with Basil Seeds', null, null, null);
+-- INSERT INTO pairing (about) values ('Honeydew Green Tea with Coconut Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Pineapple Green Tea with Boba', null, null, null);
+-- INSERT INTO pairing (about) values ('Taro Milk Tea with Oatmilk and Almond Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Passionfuit Black Tea with Boba', null, null, null);
+-- INSERT INTO pairing (about) values ('Watermelon Green Tea with Rainbow Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Almond Milk Tea with Almond Milk and Coconut Jelly', null, null, null);
+-- INSERT INTO pairing (about) values ('Coffee Milk Tea with Almond Milk and Pudding', null, null, null);
+-- INSERT INTO pairing (about) values ('Jasmine Green Milk Tea with Oatmilk and Boba', null, null, null);
+-- INSERT INTO pairing (about) values ('Regular Black Milk Tea with Oatmilk and Small Tapioca', null, null, null);
+-- INSERT INTO pairing (about) values ('Grapefuit Green Tea with Lychee Jelly', null, null, null);
+
+

@@ -9,7 +9,7 @@ const Styledmain = styled.div`
   align-items: center;
 `
 
-const RecipeList = ( {recipeData} ) => {
+const RecipeList = ( { recipeData } ) => {
   let recipeArr = recipeData.results;
 
   return (
@@ -17,7 +17,7 @@ const RecipeList = ( {recipeData} ) => {
       <Styledmain className="Meals">
         {recipeArr &&
           recipeArr.map((item, i) => (
-            <Recipe item={item} key={i}/>
+            <Recipe item={item} key={i} />
           ))
         }
       </Styledmain>
